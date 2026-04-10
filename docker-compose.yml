@@ -1,0 +1,11 @@
+version: '3.8'
+services:
+  mern-app:
+    image: node:16-slim
+    container_name: mern-app-automated
+    ports:
+      - "8082:5000"
+    volumes:
+      - .:/app  # This is the "Editable Volume" Step 15 requires
+    working_dir: /app/backend
+    command: sh -c "npm install && node server.js"
