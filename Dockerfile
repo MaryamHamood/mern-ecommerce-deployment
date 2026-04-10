@@ -1,6 +1,8 @@
 # Use Node 16 to ensure compatibility with your MERN project
 FROM node:16-slim
 
+ARG NODE_OPTIONS
+
 # Set the working directory inside the container
 WORKDIR /app
 
