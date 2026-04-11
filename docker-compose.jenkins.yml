@@ -1,0 +1,25 @@
+version: '3.8'
+services:
+  backend:
+    image: node:18
+    working_dir: /app
+    volumes:
+      - .:/app
+    ports:
+      - "4000:5000"
+    environment:
+      - NODE_ENV=production
+      - MONGO_URI=mongodb://mongo:27017/mernapp
+    command: sh -c "npm install && npm start"
+    depends_on:
+      - mongo
+  mongo:
+    image: mongo:latest
+    container_name: jenkins-mongo
+    ports:
+      - "27018:27017"
+    volumes:
+      - jenkins-mongo-data:/data/db
+
+volumes:
+  jenkins-mongo-data:
