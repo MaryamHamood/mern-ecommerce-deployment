@@ -8,8 +8,8 @@ pipeline {
         }
         stage('Build & Deploy') {
             steps {
-                sh 'docker-compose down || true'
-                sh 'docker-compose up -d --build'
+                sh 'docker-compose -f docker-compose.jenkins.yml down || true'
+                sh 'docker-compose -f docker-compose.jenkins.yml up -d --build'
             }
         }
     }
