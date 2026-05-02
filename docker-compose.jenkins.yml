@@ -7,11 +7,11 @@ services:
     environment:
       - NODE_ENV=production
       - MONGO_URI=mongodb://mongo:27017/mernapp
+      - JWT_SECRET=abc123secret
     depends_on:
       - mongo
   mongo:
     image: mongo:latest
-    container_name: jenkins-mongo
     ports:
       - "27018:27017"
     volumes:
