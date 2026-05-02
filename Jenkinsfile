@@ -23,15 +23,15 @@ pipeline {
     }
     post {
         always {
-            mail to: "${env.GIT_COMMITTER_EMAIL ?: 'maryamhamood496@gmail.com'}",
+            emailext(
+                to: 'maryamhamood496@gmail.com',
                 subject: "Jenkins Test Results - ${currentBuild.fullDisplayName}",
                 body: """
 Build: ${currentBuild.fullDisplayName}
 Status: ${currentBuild.currentResult}
 URL: ${env.BUILD_URL}
-
-Check Jenkins for full test report.
                 """
+            )
         }
     }
 }
