@@ -23,15 +23,21 @@ pipeline {
     }
     post {
         always {
-            emailext(
-                to: 'maryamhamood496@gmail.com',
-                subject: "Jenkins Test Results - ${currentBuild.fullDisplayName}",
-                body: """
+            script {
+                def pusherEmail = sh(script: "git log -1 --pretty=format:'%ae'", returnStdout: true).trim()
+                emailext(
+                    to: pusherEmail,
+                    subject: "Jenkins Test Results - ${currentBuild.fullDisplayName}",
+                    body: """
 Build: ${currentBuild.fullDisplayName}
 Status: ${currentBuild.currentResult}
+Triggered by: ${pusherEmail}
 URL: ${env.BUILD_URL}
-                """
-            )
+
+Check Jenkins for full test report.
+                    """
+                )
+            }
         }
     }
 }
