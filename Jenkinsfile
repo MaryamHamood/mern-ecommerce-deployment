@@ -16,7 +16,7 @@ pipeline {
         stage('Test') {
             steps {
                 sh 'docker rm -f selenium-tests || true'
-                sh 'docker build -t selenium-tests https://github.com/MaryamHamood/mern-ecommerce-tests.git'
+                sh 'docker build -t selenium-tests https://github.com/MaryamHamood/mern-ecommerce-tests.git#main'
                 sh 'docker run --name selenium-tests selenium-tests'
             }
         }
