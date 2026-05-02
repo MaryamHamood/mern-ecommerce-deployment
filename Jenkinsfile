@@ -25,6 +25,9 @@ pipeline {
         always {
             script {
                 def pusherEmail = sh(script: "git log -1 --pretty=format:'%ae'", returnStdout: true).trim()
+                if (!pusherEmail || !pusherEmail.contains('@') || pusherEmail.contains('compute.internal')) {
+                    pusherEmail = 'maryamhamood496@gmail.com'
+                }
                 emailext(
                     to: pusherEmail,
                     subject: "Jenkins Test Results - ${currentBuild.fullDisplayName}",
@@ -33,8 +36,6 @@ Build: ${currentBuild.fullDisplayName}
 Status: ${currentBuild.currentResult}
 Triggered by: ${pusherEmail}
 URL: ${env.BUILD_URL}
-
-Check Jenkins for full test report.
                     """
                 )
             }
