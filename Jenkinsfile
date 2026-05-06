@@ -17,7 +17,10 @@ pipeline {
             steps {
                 sh 'docker rm -f selenium-tests || true'
                 sh 'docker build -t selenium-tests https://github.com/MaryamHamood/mern-ecommerce-tests.git#main'
-                sh 'docker run --name selenium-tests --network host -e APP_URL=http://13.206.102.133:4000 selenium-tests'
+                sh '''
+                    PUBLIC_IP=$(curl -s http://169.254.169.254/latest/meta-data/public-ipv4)
+                    docker run --name selenium-tests --network host -e APP_URL=http://$PUBLIC_IP:4000 selenium-tests
+                '''
             }
         }
     }
