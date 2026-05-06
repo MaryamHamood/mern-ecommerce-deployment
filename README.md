@@ -6,7 +6,7 @@
 
 #### The main objetif behind this projet was to build an Ecommerce website that handles both sides client and admin using the next technologies :  
 
- 1. Mongo Db  
+ 1. MongoDb
  
  2. Expressjs  
  
