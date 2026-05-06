@@ -17,7 +17,7 @@ pipeline {
             steps {
                 sh 'docker rm -f selenium-tests || true'
                 sh 'docker build -t selenium-tests https://github.com/MaryamHamood/mern-ecommerce-tests.git#main'
-                sh 'docker run --name selenium-tests selenium-tests'
+                sh 'docker run --name selenium-tests --network host -e APP_URL=http://13.206.102.133:4000 selenium-tests'
             }
         }
     }
