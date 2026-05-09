@@ -1,4 +1,4 @@
-Hello!
+Hi!
 
 # Mern-Ecommerce-website 
 [![Generic badge](https://img.shields.io/badge/Responsive-Yes-<COLOR>.svg)](https://eastclothing.herokuapp.com/) 
